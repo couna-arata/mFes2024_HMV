@@ -20,6 +20,10 @@ public class MainManager : MonoBehaviour
     [SerializeField] private TimelineAsset timelines;
     [SerializeField] PlayableDirector playableDirector;
 
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
     void Update()
     {
         if (!_playingTimeline) {
