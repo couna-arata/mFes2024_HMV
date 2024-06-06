@@ -9,7 +9,7 @@ public class StatueManager : MonoBehaviour
 {
     //Static validation 
     static public int _proceedIndex = 0;
-
+   
     //Manual Set Up
     [SerializeField] private TimelineAsset[] timelines;
     [SerializeField] private float[] waitingTime;
@@ -29,13 +29,15 @@ public class StatueManager : MonoBehaviour
     private float _gazedTime = 0f;
     private float _time = 0f;
 
-  
+
+
+
     void Update()
     {
         if (!_playingTimeline)
         {
             _time += Time.deltaTime;
-            if (_time > 40)
+            if (_time > 100)
             {
                 _gazedTime = 100;
             }
@@ -112,7 +114,7 @@ public class StatueManager : MonoBehaviour
                 sceneGameobject[1].SetActive(true);
                 break;
 
-            case 3:
+            case 4:
                 sceneGameobject[1].SetActive(false);
                 sceneGameobject[2].SetActive(true);
                 break;

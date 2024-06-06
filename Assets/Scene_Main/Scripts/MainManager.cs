@@ -13,28 +13,33 @@ public class MainManager : MonoBehaviour
     static public bool _gazeState = false; //Gazing or not. 
     private bool _playingTimeline = false;
     private float _gazedTime = 0f;
-    private string TextBox = "ゴーグルを外して\r\n次の人に代わってください";
+    private string TextBox = "扉を開くには扉を見続けてください\r\n\r\n一度開けた方はゴーグルを外して\r\n次の人に代わってください";
 
     [SerializeField] TextMeshProUGUI m_TextMeshPro;
     [SerializeField] Transform raySpawner;
     [SerializeField] private TimelineAsset timelines;
     [SerializeField] PlayableDirector playableDirector;
 
-    private void Start()
-    {
-        DontDestroyOnLoad(this);
-    }
+   private GameObject GameobjectOn;
+  private GameObject GameobjectOff;
+
+    //private void Start()
+    //{
+    //    DontDestroyOnLoad(GameObject.Find("Player"));
+    //}
+
+
     void Update()
     {
         if (!_playingTimeline) {
             if (_gazeState)
             {
                 _gazedTime += Time.deltaTime;
-                if (_gazedTime > 3)
+                if (_gazedTime > 1)
                 {
-                    var jiji = 6 - _gazedTime;
+                    var jiji = 8 - _gazedTime;
                     TextBox = ((int)jiji).ToString();
-                    if (_gazedTime > 6)
+                    if (_gazedTime > 8)
                     {
                         Debug.Log("Nya");
                         playableDirector.Play(timelines);
@@ -45,7 +50,7 @@ public class MainManager : MonoBehaviour
             else
             {
                 _gazedTime = 0f;
-                TextBox = "ゴーグルを外して\r\n次の人に代わってください";
+                TextBox = "扉を開くには扉を見続けてください\r\n\r\n一度開けた方はゴーグルを外して\r\n次の人に代わってください";
             }
 
             m_TextMeshPro.text = TextBox;
@@ -58,13 +63,15 @@ public class MainManager : MonoBehaviour
     }
 
 
-    void OnPlayableDirectorStopped(PlayableDirector aDirector)
+    void OnPlayableDirectorStopped( PlayableDirector aDirector)
     {
+
         
-            SceneManager.LoadScene("Statue");
+        SceneManager.LoadScene("Statue");
+        
        
     }
 
-
+   
 
 }

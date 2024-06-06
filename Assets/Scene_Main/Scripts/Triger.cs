@@ -8,18 +8,28 @@ public class Triger : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        MainManager._gazeState = true;
-        Debug.Log("Enter");
-
+        if (other.gameObject.layer == 7)
+        {
+            MainManager._gazeState = true;
+            StatueManager._gazeState = true;
+            Debug.Log("Enter");
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        MainManager._gazeState = false;
-        Debug.Log("Exit");
+        if (other.gameObject.layer == 7)
+        {
+            MainManager._gazeState = false;
+            StatueManager._gazeState = false;
+            Debug.Log("Exit");
+        }
     }
     private void OnTriggerStay(Collider other)
     {
+        if (other.gameObject.layer ==7) { 
         MainManager._gazeState = true;
+        StatueManager._gazeState = true;
         Debug.Log("Stay");
+        }
     }
 }
